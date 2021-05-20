@@ -74,7 +74,7 @@ Open the app.py page file.
 
 
 ## Add the flatmate instant to the flat instance
-    flat = Flat(bill=1200, month_for_payment="June")
+    flat = LandLord(bill=1200, month_for_payment="June")
 
     flat.add_flat_mate(sam)
     flat.add_flat_mate(peter)

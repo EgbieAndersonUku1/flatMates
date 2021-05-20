@@ -1,4 +1,4 @@
-from flat.flat import Flat
+from flat.flat import LandLord
 from flat.flat_mate import Flatmate
 
 
@@ -12,7 +12,7 @@ karen = Flatmate("Karen", days_in_house=30)
 
 
 # Add the flat mate to the flat
-flat = Flat(bill=12000, month_for_payment="sep")
+flat = LandLord(bill=12000, month_for_payment="sep")
 
 flat.add_flat_mate(sam)
 flat.add_flat_mate(egbie)

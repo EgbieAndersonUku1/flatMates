@@ -4,7 +4,7 @@ from utils.errors import NoHousmatesError, invalidMonthError
 from utils.pdf_generator import PdfGenerator
 
 
-class Flat(Calender):
+class LandLord(Calender):
 
     def __init__(self, bill, month_for_payment):
         self._house_mates = []
