@@ -3,9 +3,14 @@ A application that calculates the amount for a bill each flatmate should pay bas
 
 
 # The housemate bill problem
-I was on the train a few days ago and they were two people arguing about the house bill. It seem that one of the housemate did not want to pay the full amount of the bill because he only staying 15 days and then travelling for the rest of the month. He felt that he should only pay for the days he stayed and not for the full month.
+I was on the train a few days ago and they were two people arguing about the house bill. It seem that one of the 
+housemate felt that he should not have to pay the full amount of the bill for that month because he was only staying
+there for 15 days and then travelling for the rest of the month. He felt that he should only pay for the days 
+he stayed and not for the full month.
 
-After I got home I started thinking about this problem and thought what if they was a way to code this problem but not just for two housemates but for an unlimited housemates. The app will take a number of housemates and calcuate the amount they have to pay based on the number of days there stayed in a given house. 
+After I got home I started thinking about this problem and thought what if they was a way to code this problem 
+but not just for two housemates but for an unlimited number of housemates. The app will take a number of housemates 
+and then calcuate the amount they have to pay based on the number of days there stayed for that month. 
 
 
 ## The housemate problem defined
@@ -17,7 +22,13 @@ After I got home I started thinking about this problem and thought what if they 
 
 ## The problem
 
-Imagine if you own a house or a flat and because the bill/rent is too much you for you to handle you get in housemates. This allows you to divide the bill equal among the housemates. For example, if the rent is £600 a month and they are two housemates plus yourself then each housemate will pay a total of £200 pound each which is perfect. But what if the housemates were been difficult and only wanted to pay for the number of days they stayed in the house for that month. How much will each housmate pay based on the days that stayed in that month?
+Imagine if you own a house or a flat and because the bill/rent is too much you for you to handle you get 
+in housemates. This act allows you to divide the bill equal among the housemates. For example, 
+if the rent is £600 a month and they are two housemates plus yourself then each person will pay a 
+total of £200 pound each which is perfect. But what if the housemates were been difficult and only
+ wanted to pay for the number of days they stayed in the house for that month. 
+ 
+How much will each housmate pay based on the days that stayed in that month?
 
 For example:
 
@@ -33,7 +44,7 @@ For example:
 
 How much will each housemate pay based on the number of days their stayed?
 
-In this above the example each housemate will pay the following:
+In this above example each housemate will pay the following:
 
 1. Sam   pays £120 for his 9 days stay
 1. Egbie pays £893.33 for his 30 day stay
@@ -51,10 +62,10 @@ Technology used Python
 Open the app.py page file.
     1. create a flatmate object, add name and the number of the days they stayed. You can create as many flatmate object as you want
     2. Create flat instant object and add the bill amount and the month. The month be the first three letters of the month e.g January -> jan, February -> feb
-    3. Run the application and a nice formated pdf will be generate with the amount each housemate has to pay
+    3. Run the application and a nice formatted pdf will be generate with the amount each housemate has to pay
 
 
-## Translate the above example into code
+## The above example in code
 
 ### create the flatmate instance
     sam = Flatmate("sam", days_in_house=9)
