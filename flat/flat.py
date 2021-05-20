@@ -60,16 +60,16 @@ class Flat(Calender):
                 house_mates.append(house_mate)
 
         if payment_remaining:
-            self._divide_bill_remaining_between_flat_mates_who_stayed_the_full_course(house_mates,
-                                                                                      flat_mates_who_stayed_the_full_month,
-                                                                                      payment_remaining)
+            self._divide_remaining_bill_between_flat_mates_who_stayed_the_full_month(house_mates,
+                                                                                     flat_mates_who_stayed_the_full_month,
+                                                                                     payment_remaining)
         else:
             house_mates = flat_mates_who_stayed_the_full_month
         return house_mates
 
-    def _divide_bill_remaining_between_flat_mates_who_stayed_the_full_course(self, house_mates,
-                                                                             house_mates_who_stayed_the_full_course,
-                                                                             payment_remaining):
+    def _divide_remaining_bill_between_flat_mates_who_stayed_the_full_month(self, house_mates,
+                                                                            house_mates_who_stayed_the_full_course,
+                                                                            payment_remaining):
 
         if house_mates_who_stayed_the_full_course:
 
