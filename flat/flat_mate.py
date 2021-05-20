@@ -12,7 +12,10 @@ class Flatmate(Bill):
 
         if self.__month_period:
             super().__init__(bill_per_month, self.__month_period)
-            self.days_in_month = Calender.get_days(self.__month_period)
+            try:
+                self.days_in_month = Calender.get_days(self.__month_period)
+            except:
+                raise "incorrect month"
 
         self.pay_bill_amount = bill_per_month
 

@@ -1,6 +1,6 @@
 from flat.bill_statement import FlatMateBillStatementFields
 from utils.calender import Calender
-from utils.errors import NoHousmatesError
+from utils.errors import NoHousmatesError, invalidMonthError
 from utils.pdf_generator import PdfGenerator
 
 
@@ -9,6 +9,9 @@ class Flat(Calender):
     def __init__(self, bill, month_for_payment):
         self._house_mates = []
         self.bill = bill
+
+        if not self.get_days(month_for_payment):
+            raise invalidMonthError("The month entered is incorrect")
         self.month_for_payment = month_for_payment
 
     def generate_bill_statement_pdf(self):
@@ -22,7 +25,7 @@ class Flat(Calender):
         flat_bill.add_subject(FlatMateBillStatementFields.subject)
 
         first_paragraph = FlatMateBillStatementFields.first_paragraph.format(names, self.bill,
-                                                                       self.month_for_payment,
+                                                                       self.get_full_month_name(self.month_for_payment),
                                                                        self.get_number_of_flat_mate())
 
         flat_bill.add_body(first_paragraph)
@@ -145,8 +148,8 @@ class _FlatBillPDFGenerator(object):
         for flat_mate in house_mates:
 
             self._pdf.insert_data_single_cell(cell_width=120, cell_height=17, data_txt=flat_mate.name.title()[:9])
-            self._pdf.insert_data_single_cell(cell_width=160, cell_height=17, data_txt=str(flat_mate.days_in_house))
-            self._pdf.insert_data_single_cell(cell_width=100, cell_height=17, data_txt=str(flat_mate.get_month()))
+            self._pdf.insert_data_single_cell(cell_width=140, cell_height=17, data_txt=str(flat_mate.days_in_house))
+            self._pdf.insert_data_single_cell(cell_width=120, cell_height=17, data_txt=str(flat_mate.get_month())[:3].title())
             self._pdf.insert_data_single_cell(cell_width=150, cell_height=17, data_txt="£" + str(flat_mate.bill_amount_to_pay))
 
             self._pdf.add_new_line()
