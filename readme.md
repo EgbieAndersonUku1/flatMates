@@ -8,9 +8,9 @@ housemate felt that he should not have to pay the full amount of the bill for th
 there for 15 days and then travelling for the rest of the month. He felt that he should only pay for the days 
 he stayed and not for the full month.
 
-After I got home I started thinking about this problem and thought what if they was a way to code this problem 
+After I got home I started thinking about this problem and thought what if they was a way to code that problem 
 but not just for two housemates but for an unlimited number of housemates. The app will take a number of housemates 
-and then calcuate the amount they have to pay based on the number of days there stayed for that month. 
+and then calculate the amount they have to pay based on the number of days there stayed for that month. 
 
 
 ## The housemate problem defined
@@ -28,7 +28,7 @@ if the rent is £600 a month and they are two housemates plus yourself then each
 total of £200 pound each which is perfect. But what if the housemates were been difficult and only
  wanted to pay for the number of days they stayed in the house for that month. 
  
-How much will each housmate pay based on the days that stayed in that month?
+How much will each housemate pay based on the days that stayed in that month?
 
 For example:
 
