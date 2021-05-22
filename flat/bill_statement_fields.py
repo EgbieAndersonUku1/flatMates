@@ -4,8 +4,8 @@ ADDRESS = """
 221b Baker St, 
 London 
 NW1 6XE
-
 """
+
 GREETINGS = "Dear Housemates, "
 SUBJECT = "Request for payment"
 

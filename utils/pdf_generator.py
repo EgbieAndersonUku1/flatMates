@@ -70,3 +70,6 @@ class PdfGenerator(object):
 
     def add_new_line(self):
         self._pdf.ln()
+
+    def add_img(self, img, width, height):
+        self._pdf.image(img, w=width, h=height)

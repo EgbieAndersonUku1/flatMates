@@ -1,3 +1,6 @@
+import webbrowser
+from os.path import realpath
+
 from flat.bill_statement import FlatMateBillStatementFields
 from utils.calender import Calender
 from utils.errors import NoHousmatesError, invalidMonthError
@@ -14,11 +17,13 @@ class LandLord(Calender):
             raise invalidMonthError("The month entered is incorrect")
         self.month_for_payment = month_for_payment
 
-    def generate_bill_statement_pdf(self):
+    def generate_bill_statement_pdf(self, open_pdf=True):
 
         names = ", ".join(self.get_all_flatmates_names())
+        file_name = "housemates_bill_statement.pdf"
+        flat_bill = _FlatBillPDFGenerator(housemates=self, file_name=file_name)
 
-        flat_bill = _FlatBillPDFGenerator(housemates=self, file_name="housemates_bill_statement.pdf")
+        flat_bill.add_img("sherlock_img.jpg")
         flat_bill.add_heading("Bill statements for housemates")
         flat_bill.add_address(FlatMateBillStatementFields.address)
         flat_bill.add_greeting(FlatMateBillStatementFields.greeting)
@@ -30,6 +35,9 @@ class LandLord(Calender):
 
         flat_bill.add_body(first_paragraph)
         flat_bill.generate_pdf()
+
+        if open_pdf:
+            webbrowser.open("file://" + realpath(file_name))
 
     def get_all_flatmates_names(self):
         return [house_mate.name.title() for house_mate in self._house_mates]
@@ -99,12 +107,15 @@ class _FlatBillPDFGenerator(object):
     def generate_pdf(self):
         self._pdf.generate()
 
-    def add_address(self, address, font="Helvetica", style="B", size=18):
+    def add_img(self, img, width=30, height=30):
+        self._pdf.add_img(img, width=width, height=height)
+
+    def add_address(self, address, font="Helvetica", style="I", size=16):
         self._pdf.change_font(font_family=font, style=style, size=size)
         self._pdf.insert_data_multiple_cell(self.CELL_WIDTH, self.CELL_HEIGHT + 1, data_txt=address)
         self._pdf.add_new_line()
 
-    def add_heading(self, heading, font="Helvetica", style="BU", size=30, cell_height=30):
+    def add_heading(self, heading, font="Helvetica", style="BU", size=20, cell_height=30):
         self._pdf.change_font(font_family=font, style=style, size=size)
         self._pdf.insert_title(heading, cell_height=cell_height)
         self._pdf.add_new_line()
@@ -142,7 +153,7 @@ class _FlatBillPDFGenerator(object):
     def _create_table_data(self):
 
         house_mates = self.housemates.bill_for_each_flat_mate()
-        self._pdf.change_font(style="I")
+        self._pdf.change_font(style="I", size=15)
         self._pdf.add_new_line()
 
         for flat_mate in house_mates:
