@@ -36,7 +36,7 @@ def get_amount_to_pay_for_month():
             print("[-] The bill amount must a integer or float not a string..")
 
 
-def add_house_mate(month):
+def get_house_mate_for_month_occuring(month):
     
     name = get_input("[*] Add the name of a housemate: ")
     running = True
@@ -69,7 +69,7 @@ def main():
     running = True
 
     while running:
-        house_mate_name, days_stayed = add_house_mate(month)
+        house_mate_name, days_stayed = get_house_mate_for_month_occuring(month)
         mate = Flatmate(house_mate_name, int(days_stayed))
         flat.add_flat_mate(mate)
 
