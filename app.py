@@ -73,7 +73,7 @@ def main():
         mate = Flatmate(house_mate_name, int(days_stayed))
         flat.add_flat_mate(mate)
 
-        response = get_input("\n[*] Do you want to add another housemate, press (y/n): ")
+        response = get_input("\n[*] Do you want to add another housemate, press (y/n):  ")
         if response.lower() == "y":
             continue
         elif response.lower() == "n":
