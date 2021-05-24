@@ -1,39 +1,86 @@
 from flat.flat import LandLord
 from flat.flat_mate import Flatmate
+from utils.calender import Calender
 
 
-# create the flat mate
-sam = Flatmate("sam", days_in_house=9)
-egbie = Flatmate("Egbie", days_in_house=30)
-vicky = Flatmate("King", days_in_house=14)
-ricky = Flatmate("Ricky", days_in_house=10)
-sammy = Flatmate("Sammy", days_in_house=30)
-karen = Flatmate("Karen", days_in_house=30)
+def validate_days_in_month(month, day):
+    try:
+        return int(day) <= Calender.get_days(month)
+    except TypeError:
+        raise TypeError("[-] Incorrect day for month entered")
+    except ValueError:
+        raise ValueError("[-] Incorrect value for the month entered")
 
 
-# Add the flat mate to the flat
-flat = LandLord(bill=12000, month_for_payment="sep")
+def get_month_for_bill():
 
-flat.add_flat_mate(sam)
-flat.add_flat_mate(egbie)
-flat.add_flat_mate(vicky)
-flat.add_flat_mate(ricky)
-flat.add_flat_mate(sammy)
-flat.add_flat_mate(karen)
+    is_month_correct = False
+
+    while not is_month_correct:
+        month = input("[+] Enter the billing month: ")
+
+        if Calender.get_full_month_name(month):
+            is_month_correct = True
+        else:
+            print("[-] Invalid month entered, try again...")
+    return month
 
 
-def run():
-    print(f"Creating payment plan for {flat.get_number_of_flat_mate()} flatmates based on the days they stayed, please wait..")
-    print("Done..")
-    print("Generating bill statement in the form of a pdf, please wait..")
+def get_amount_to_pay_for_month():
 
+    while True:
+        bill_amount = input("[*] Enter the amount for bill: ")
+        try:
+            return float(bill_amount)
+        except ValueError:
+            print("[-] The bill amount must a integer or float not a string..")
+
+
+def add_house_mate(month):
+    
+    name = get_input("[*] Add the name of a housemate: ")
+    running = True
+
+    while running:
+        
+        days = get_input(f"[+] Add the number of days their stayed for the month of {month.title()}: ")
+
+        if not validate_days_in_month(month, days):
+            print("[-] Error, the day entered is greater the number of days in the month, try again... ")
+        else:
+            running = False
+    return name, days
+            
+
+def get_input(question):
+
+    while True:
+        data = input(question)
+        if data:
+            return data
+    
+
+def main():
+
+    month = get_month_for_bill()
+    bill = get_amount_to_pay_for_month()
+
+    flat = LandLord(float(bill), month)
+    running = True
+
+    while running:
+        house_mate_name, days_stayed = add_house_mate(month)
+        mate = Flatmate(house_mate_name, int(days_stayed))
+        flat.add_flat_mate(mate)
+
+        response = get_input("\n[*] Do you want to add another housemate, press (y/n): ")
+        if response.lower() == "y":
+            continue
+        elif response.lower() == "n":
+            running = False
+
+    print("Generating pdf income please wait...")
     flat.generate_bill_statement_pdf()
-    print("Done, You bill statement has been created and is now in the root directory")
 
 
-run()
-
-
-
-
-
+main()
